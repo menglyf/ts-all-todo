@@ -33,7 +33,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --ext .ts",
+    "lint": "eslint --ext .js,.jsx,.tsx,.ts src/ --fix",
     "format": "prettier --config prettier.config.js --write src/**/*.{js,less,tsx,ts,jsx}",
     "commit": "git-cz"
   },
@@ -44,9 +44,9 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,less,tsx,ts,jsx}": [
+    "src/**/*.{js,tsx,ts,jsx}": [
+      "eslint --ext .js,.jsx,.tsx,.ts src/ --fix",
       "prettier --config prettier.config.js --write src/**/*.{js,less,tsx,ts,jsx}",
-      "eslint --fix",
       "git add"
     ]
   },

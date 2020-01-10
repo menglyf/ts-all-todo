@@ -45,8 +45,8 @@
   },
   "lint-staged": {
     "src/**/*.{js,less,tsx,ts,jsx}": [
-      "eslint --fix",
       "prettier --config prettier.config.js --write src/**/*.{js,less,tsx,ts,jsx}",
+      "eslint --fix",
       "git add"
     ]
   },

@@ -2,6 +2,47 @@
   "name": "ts-all-todo",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "build": "react-app-rewired build",
+    "commit": "git-cz",
+    "eject": "react-scripts eject",
+    "lint": "npm run lint:script && npm run lint:style",
+    "lint-fix:script": "npm run lint:script -- --fix",
+    "lint-fix:style": "npm run lint:style -- --fix",
+    "lint:script": "eslint . --ext \".js,.jsx,.ts,.tsx\"",
+    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
+    "prettier": "prettier -c --write \"**/*\"",
+    "pretty-quick": "pretty-quick",
+    "sort": "npx sort-package-json",
+    "start": "react-app-rewired start",
+    "test": "react-app-rewired test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -28,53 +69,17 @@
     "react-scripts": "3.3.0",
     "typescript": "~3.7.2"
   },
-  "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject",
-    "lint": "eslint --ext .js,.jsx,.tsx,.ts src/ --fix",
-    "format": "prettier --config prettier.config.js --write src/**/*.{js,less,tsx,ts,jsx}",
-    "commit": "git-cz"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,tsx,ts,jsx}": [
-      "eslint --ext .js,.jsx,.tsx,.ts src/ --fix",
-      "prettier --config prettier.config.js --write src/**/*.{js,less,tsx,ts,jsx}",
-      "git add"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.4",
     "@commitlint/config-conventional": "^8.3.4",
     "cz-conventional-changelog": "3.0.2",
     "husky": "^4.0.5",
-    "lint-staged": "^9.5.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "pretty-quick": "^2.0.1",
+    "stylelint": "^13.0.0",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.2.0",
+    "stylelint-order": "^4.0.0"
   }
 }

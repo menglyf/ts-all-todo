@@ -47,6 +47,14 @@ eslint-plugin-prettier 插件会调用 prettier 对你的代码风格进行检�
 
 eslint-config-prettier 能够关闭一些不必要的或者是与 prettier 冲突的 eslint 选项
 
+### `引入stylelint及相关插件包`
+
+```
+yarn add stylelint stylelint-config-prettier stylelint-config-rational-order stylelint-config-standard stylelint-declaration-block-no-ignored-properties stylelint-order -D
+```
+
+对 css 文件进行检测
+
 ### `引入typescriptz解析器`
 
 ```
@@ -144,6 +152,7 @@ module.exports = override(
 
 ```diff
 {
++ "extends": "./tsconfig-paths.json",
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -164,10 +173,6 @@ module.exports = override(
     "noEmit": true,
     "jsx": "react",
 +   "experimentalDecorators": true,
-+   "baseUrl": "src",
-+   "paths": {
-+     "@/*": ["*"]
-+   }
   },
   "include": [
     "src"
@@ -176,10 +181,22 @@ module.exports = override(
 
 ```
 
-### `添加husk lint-staged对提交进行检测`
+3. 在根目录添加 tsconfig-paths.json
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["*"]
+    }
+  }
+}
+```
+
+### `添加pretty-quick对提交进行检测`
 
 ```bash
-npm i -D husky lint-staged
+npm i -D pretty-quick
 ```
 
 在 package.json 中添加一下内容
@@ -187,23 +204,21 @@ npm i -D husky lint-staged
 ```diff
 + "husky": {
 +   "hooks": {
-+     "pre-commit": "lint-staged"
++     "pre-commit": "pretty-quick --staged"
 +   }
 + },
-+ "lint-staged": {
-+   "src/**/*.{js,less,tsx,ts,jsx}": [
-+     "eslint --fix",
-+     "prettier --write",
-+     "git add"
-+   ]
-+ },
 ```
+
 安装弹窗交互的提交工具
+
 ```bash
 npm install commitizen -g
+
 commitizen init cz-conventional-changelog --yarn --dev --exact
 ```
-安装检查提交日志是否规范的npm包
+
+安装检查提交日志是否规范的 npm 包
+
 ```bash
 yarn add @commitlint/config-conventional @commitlint/cli --dev
 ```

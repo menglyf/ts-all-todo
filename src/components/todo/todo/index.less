@@ -1,8 +1,15 @@
 .todo {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 10px;
   &:not(:last-child) {
     border-bottom: 1px solid #eee;
+  }
+  .line {
+    text-decoration: line-through;
+  }
+  &.modal {
+    background-color: rgba(197, 191, 191, 0.4);
   }
 }

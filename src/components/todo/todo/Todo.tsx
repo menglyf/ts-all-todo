@@ -1,20 +1,27 @@
 ﻿import React from 'react'
-import { Button } from 'antd'
+import { Icon, Checkbox } from 'antd'
 import './index.less'
 
 interface ITodo {
   finished: boolean
   text: string
-  onClick(): void
+  id: number
 }
 
-const Todo: React.FC<ITodo> = ({ finished, text, onClick }) => {
+interface IProp {
+  data: ITodo
+  onDelete(id: ITodo['id']): void
+  onChange(id: ITodo['id']): void
+}
+
+const Todo: React.FC<IProp> = ({ data, onDelete, onChange }) => {
+  const { finished, text, id } = data
   return (
-    <div className='todo'>
-      <span>{text}</span>
-      <Button size='small' type='danger' onClick={onClick}>
-        删除
-      </Button>
+    <div className={`todo ${finished ? 'modal' : ''}`}>
+      <Checkbox checked={finished} onChange={() => onChange(id)}>
+        <span className={finished ? 'line' : ''}>{text}</span>
+      </Checkbox>
+      <Icon type='delete' onClick={() => onDelete(id)} />
     </div>
   )
 }

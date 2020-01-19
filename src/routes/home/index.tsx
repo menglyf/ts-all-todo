@@ -25,6 +25,11 @@ const Home: React.FC<Props> = () => {
           todo
         </NavLink>
       </li>
+      <li>
+        <NavLink to='/mobx-todo' activeStyle={activeStyle}>
+          mobx-todo
+        </NavLink>
+      </li>
     </ul>
   )
 }

@@ -1,15 +1,11 @@
 import React from 'react'
 import Todo from '../todo/Todo'
+import { TodoModel } from '@/mobxModels/TodoModel'
 
 interface Props {
-  list: ITodo[]
+  list: TodoModel[]
   onDelete(id: ITodo['id']): void
   onChangeStatus(id: ITodo['id']): void
-}
-interface ITodo {
-  finished: boolean
-  text: string
-  id: number
 }
 
 const listStyle = {

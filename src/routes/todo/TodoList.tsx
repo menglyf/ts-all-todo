@@ -1,54 +1,51 @@
 import React, { Component } from 'react'
 import { Header, List } from '@/components/todo'
 import { Tabs } from 'antd'
+import { v4 as uuid } from 'uuid'
 import './index.less'
 const { TabPane } = Tabs
-interface ITodo {
-  finished: boolean
-  text: string
-  id: number
-}
+
 interface Props {}
 interface State {
   list: ITodo[]
-  text: string
+  inputText: string
 }
 
 export default class TodoList extends Component<Props, State> {
   state = {
     list: [
       {
-        id: 1,
+        id: uuid(),
         finished: true,
         text: '我是第一个'
       },
       {
-        id: 2,
+        id: uuid(),
         finished: false,
         text: '我是第二个'
       }
     ],
-    text: ''
+    inputText: ''
   }
   onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
-      text: e.target.value
+      inputText: e.target.value
     })
   }
   addButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { list, text } = this.state
+    const { list, inputText: text } = this.state
     list.push({
-      id: new Date().getTime(),
+      id: uuid(),
       finished: false,
       text
     })
-    this.setState({ list, text: '' })
+    this.setState({ list, inputText: '' })
   }
 
   deleteItem = (id: ITodo['id']) => {
     const { list } = this.state
     this.setState({
-      list: list.filter(item => item.id != id)
+      list: list.filter(item => item.id !== id)
     })
   }
 
@@ -62,7 +59,7 @@ export default class TodoList extends Component<Props, State> {
   }
 
   render() {
-    const { list, text } = this.state
+    const { list, inputText: text } = this.state
     return (
       <div className='todo-container'>
         <Header inputValue={text} onChange={this.onInputChange} onClick={this.addButtonClick} />

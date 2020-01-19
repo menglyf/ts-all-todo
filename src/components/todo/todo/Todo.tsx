@@ -2,12 +2,6 @@
 import { Icon, Checkbox } from 'antd'
 import './index.less'
 
-interface ITodo {
-  finished: boolean
-  text: string
-  id: number
-}
-
 interface IProp {
   data: ITodo
   onDelete(id: ITodo['id']): void

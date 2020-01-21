@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import { Home, TodoList, MobxTodoList } from '@/routes'
+import { Home, TodoList, MobxTodoList, ReduxTodoList } from '@/routes'
 import App from '@/App'
 
 interface Props {}
@@ -18,6 +18,7 @@ export default class RouteConfig extends Component<Props, State> {
           <Route path='/app' component={App} />
           <Route path='/todo' component={TodoList} />
           <Route path='/mobx-todo' component={MobxTodoList} />
+          <Route path='/redux-todo' component={ReduxTodoList} />
         </Switch>
       </Router>
     )

@@ -14,3 +14,8 @@ interface IMobxTodoList {
   addButtonClick(): void
   deleteItem(id: ITodo['id']): void
 }
+
+interface IReduxModel {
+  inputValue: string
+  todos: ITodo[]
+}

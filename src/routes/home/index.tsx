@@ -30,6 +30,11 @@ const Home: React.FC<Props> = () => {
           mobx-todo
         </NavLink>
       </li>
+      <li>
+        <NavLink to='/redux-todo' activeStyle={activeStyle}>
+          redux-todo
+        </NavLink>
+      </li>
     </ul>
   )
 }

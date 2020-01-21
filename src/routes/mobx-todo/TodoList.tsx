@@ -28,25 +28,31 @@ export default class TodoList extends Component<Props, State> {
         />
         <Tabs tabPosition='left'>
           <TabPane tab={`全部(${todoModel.allNum})`} key='all'>
-            <List
-              onDelete={todoModel.deleteTodo}
-              onChangeStatus={todoModel.changeStatus}
-              list={todoModel.todos}
-            />
+            {todoModel.todos.length > 0 && (
+              <List
+                onDelete={todoModel.deleteTodo}
+                onChangeStatus={todoModel.changeStatus}
+                list={todoModel.todos}
+              />
+            )}
           </TabPane>
           <TabPane tab={`已完成(${todoModel.completedTodosNum})`} key='done'>
-            <List
-              onDelete={todoModel.deleteTodo}
-              onChangeStatus={todoModel.changeStatus}
-              list={todoModel.completedTodos}
-            />
+            {todoModel.completedTodos.length > 0 && (
+              <List
+                onDelete={todoModel.deleteTodo}
+                onChangeStatus={todoModel.changeStatus}
+                list={todoModel.completedTodos}
+              />
+            )}
           </TabPane>
           <TabPane tab={`未完成(${todoModel.activeTodosNum})`} key='todo'>
-            <List
-              onDelete={todoModel.deleteTodo}
-              onChangeStatus={todoModel.changeStatus}
-              list={todoModel.activeTodos}
-            />
+            {todoModel.activeTodos.length > 0 && (
+              <List
+                onDelete={todoModel.deleteTodo}
+                onChangeStatus={todoModel.changeStatus}
+                list={todoModel.activeTodos}
+              />
+            )}
           </TabPane>
         </Tabs>
       </div>

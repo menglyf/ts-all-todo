@@ -60,26 +60,26 @@ export default class TodoList extends Component<Props, State> {
 
   render() {
     const { list, inputText: text } = this.state
+    let doneList = list.filter(item => item.finished)
+    let todoList = list.filter(item => !item.finished)
     return (
       <div className='todo-container'>
         <Header inputValue={text} onChange={this.onInputChange} onClick={this.addButtonClick} />
         <Tabs tabPosition='left'>
-          <TabPane tab='全部' key='all'>
-            <List onDelete={this.deleteItem} onChangeStatus={this.changeStatus} list={list} />
+          <TabPane tab={`全部(${list.length})`} key='all'>
+            {list.length > 0 && (
+              <List onDelete={this.deleteItem} onChangeStatus={this.changeStatus} list={list} />
+            )}
           </TabPane>
-          <TabPane tab='已完成' key='done'>
-            <List
-              onDelete={this.deleteItem}
-              onChangeStatus={this.changeStatus}
-              list={list.filter(item => item.finished)}
-            />
+          <TabPane tab={`已完成(${doneList.length})`} key='done'>
+            {doneList.length > 0 && (
+              <List onDelete={this.deleteItem} onChangeStatus={this.changeStatus} list={doneList} />
+            )}
           </TabPane>
-          <TabPane tab='未完成' key='todo'>
-            <List
-              onDelete={this.deleteItem}
-              onChangeStatus={this.changeStatus}
-              list={list.filter(item => !item.finished)}
-            />
+          <TabPane tab={`未完成(${todoList.length})`} key='todo'>
+            {todoList.length > 0 && (
+              <List onDelete={this.deleteItem} onChangeStatus={this.changeStatus} list={todoList} />
+            )}
           </TabPane>
         </Tabs>
       </div>

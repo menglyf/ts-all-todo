@@ -44,6 +44,7 @@ export default class TodoStore {
   @action
   addTodo = (): void => {
     this.todos.push(new TodoModel(this.inputValue))
+    this.inputValue = ''
   }
   @action
   deleteTodo = (id: string): void => {

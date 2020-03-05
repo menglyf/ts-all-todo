@@ -27,7 +27,7 @@ class TodoList extends Component<IReduxHandle, {}> {
         <Header
           inputValue={inputValue}
           onChange={e => changeInput(e.target.value)}
-          onClick={addTodo}
+          onAdd={addTodo}
         />
         <Tabs tabPosition='left'>
           <TabPane tab={`全部(${todos.length})`} key='all'>

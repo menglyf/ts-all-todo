@@ -24,7 +24,7 @@ export default class TodoList extends Component<Props, State> {
         <Header
           inputValue={todoModel.inputValue}
           onChange={e => todoModel.changeInput(e.target.value)}
-          onClick={e => todoModel.addTodo()}
+          onAdd={todoModel.addTodo}
         />
         <Tabs tabPosition='left'>
           <TabPane tab={`全部(${todoModel.allNum})`} key='all'>

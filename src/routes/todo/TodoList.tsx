@@ -32,7 +32,7 @@ export default class TodoList extends Component<Props, State> {
       inputText: e.target.value
     })
   }
-  addButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  addButtonClick = () => {
     const { list, inputText: text } = this.state
     list.push({
       id: uuid(),
@@ -64,7 +64,7 @@ export default class TodoList extends Component<Props, State> {
     let todoList = list.filter(item => !item.finished)
     return (
       <div className='todo-container'>
-        <Header inputValue={text} onChange={this.onInputChange} onClick={this.addButtonClick} />
+        <Header inputValue={text} onChange={this.onInputChange} onAdd={this.addButtonClick} />
         <Tabs tabPosition='left'>
           <TabPane tab={`全部(${list.length})`} key='all'>
             {list.length > 0 && (
